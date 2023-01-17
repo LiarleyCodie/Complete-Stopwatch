@@ -24,15 +24,22 @@ startBtn.onclick = () => {
       renderTime()
     }, 1000 / 100)
     areRunning = true
+    startButton(true)
+    stopButton(true)
+    resetButton(true)
   }
 }
 stopBtn.onclick = () => {
   clearInterval(interval)
   areRunning = false
+  startButton(false)
+  stopButton(false)
 }
 resetBtn.onclick = () => {
   time = createTime()
   renderTime()
+  if (!areRunning)
+    resetButton(false)
 }
 
 function renderTime() {
@@ -58,4 +65,27 @@ function updateTime() {
     time.h += 1
     time.m = 0
   }
+}
+
+function startButton(state) {
+  if (state) {
+    startBtn.style.background = 'var(--fourth-color)'
+    startBtn.style.color = 'var(--first-color)'
+  }
+  if (!state) {
+    startBtn.style.background = 'initial'
+    startBtn.style.color = 'var(--fourth-color)'
+  }
+}
+
+function stopButton(state) {
+  if (state) stopBtn.removeAttribute('disabled')
+  if (!state) stopBtn.setAttribute('disabled', true)
+}
+
+function resetButton(state) {
+  if (state)
+    resetBtn.removeAttribute('disabled')
+  if (!state)
+    resetBtn.setAttribute('disabled', true)
 }
