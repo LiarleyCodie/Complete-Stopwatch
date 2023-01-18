@@ -13,12 +13,26 @@
 
 <body>
   <main>
-    <h1 class="timer">00:00:00:00</h1>
-    <div class="buttons">
-      <button class="start">Start</button>
-      <button class="stop" disabled>Stop</button>
-      <button class="reset" disabled>Reset</button>
+    <div class="mainContainer">
+      <h1 class="timer">00:00:00:00</h1>
+      <div class="buttons">
+        <button class="start">Start</button>
+        <button class="stop" disabled>Stop</button>
+        <button class="reset" disabled>Reset</button>
+      </div>
     </div>
+    <ul class="lapsContainer">
+      <li class="lap">
+        <span class="moment">
+          <span class="title">Time:</span>
+          <span class="time">00:03:27:63</span>
+        </span>
+        <button class="remove">
+          <i class="bar"></i>
+          <i class="bar"></i>
+        </button>
+      </li>
+    </ul>
   </main>
   <script src="index.js"></script>
 </body>

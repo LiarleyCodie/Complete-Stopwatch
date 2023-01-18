@@ -1,7 +1,7 @@
-const timerEl = document.querySelector(".timer")
-const startBtn = document.querySelector('.start')
-const stopBtn = document.querySelector('.stop')
-const resetBtn = document.querySelector('.reset')
+const timerEl = document.querySelector(".timer");
+const startBtn = document.querySelector('.start');
+const stopBtn = document.querySelector('.stop');
+const resetBtn = document.querySelector('.reset');
 var interval;
 var areRunning = false
 

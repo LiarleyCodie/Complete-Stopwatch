@@ -15,6 +15,7 @@
   box-sizing: border-box;
   border-style: none;
   outline: none;
+  list-style-type: none;
 }
 
 body {
@@ -27,14 +28,30 @@ body {
   text-align: center;
 }
 
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 60%;
+}
+
 .timer {
-  font-size: 3rem;
+  font-size: 4rem;
 }
 
 .buttons {
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
+  width: 70%;
 }
 
 .buttons button {
@@ -73,4 +90,65 @@ button.start {
 button.start:not(:disabled):hover {
   background: var(--fourth-color);
   color: var(--first-color);
+}
+
+/* Laps */
+.lapsContainer {
+  display: flex;
+  width: 100%;
+  background: var(--disabled);
+  margin-top: 1rem;
+  padding: 0.7rem 0.9rem;
+  height: 40%;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.lap {
+  display: flex;
+  background: var(--first-color);
+  padding: 0.3rem;
+  border-radius: 0.7rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.lap .moment {
+  text-align: center;
+  width: calc(100% - 3rem);
+}
+
+.lap .moment .title {
+  color: var(--disabled);
+  font-size: 1rem;
+  display: block;
+}
+
+.lap button {
+  display: flex;
+  height: 3rem;
+  background: var(--disabled);
+  width: 3rem;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 0.7rem;
+}
+
+.lap button .bar {
+  position: absolute;
+  height: 1.6rem;
+  width: 4px;
+  background: var(--white);
+  border-radius: 1rem;
+}
+
+.lap button .bar:nth-child(1) {
+  transform: rotateZ(45deg);
+}
+.lap button .bar:nth-child(2) {
+  transform: rotateZ(-45deg);
 }
