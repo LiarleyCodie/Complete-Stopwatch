@@ -29,6 +29,7 @@ body {
 }
 
 main {
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -40,6 +41,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 60%;
 }
 
@@ -51,13 +53,13 @@ main {
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
-  width: 70%;
+  width: 90%;
 }
 
 .buttons button {
   height: 2rem;
-  width: 5rem;
-  margin: 0 0.1rem;
+  width: 6rem;
+  margin: 0 0.3rem;
   background: none;
   border: 2px solid var(--second-color);
   font-weight: 400;
@@ -95,11 +97,13 @@ button.start:not(:disabled):hover {
 /* Laps */
 .lapsContainer {
   display: flex;
-  width: 100%;
+  width: 95%;
   background: var(--disabled);
   margin-top: 1rem;
-  padding: 0.7rem 0.9rem;
+  padding: 0.2rem;
   height: 40%;
+  border-radius: 1rem 1rem 0 0;
+  overflow-y: scroll;
 }
 
 ul {
@@ -110,40 +114,58 @@ ul {
 .lap {
   display: flex;
   background: var(--first-color);
-  padding: 0.3rem;
-  border-radius: 0.7rem;
+  padding: 0.2rem;
+  border-radius: 1rem;
   justify-content: center;
   align-items: center;
 }
 
-.lap .moment {
-  text-align: center;
-  width: calc(100% - 3rem);
+.lap:not(:last-child) {
+  margin-bottom: 0.3rem;
 }
 
-.lap .moment .title {
+.lap .moment {
+  display: flex;
+  width: calc(100% - 2.6rem);
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.lap .moment .position {
   color: var(--disabled);
-  font-size: 1rem;
-  display: block;
+  font-size: 2rem;
+  justify-self: flex-start;
+  margin-right: 1rem;
+}
+
+.lap .moment .time {
+  font-size: 2rem;
 }
 
 .lap button {
   display: flex;
-  height: 3rem;
+  height: 2.6rem;
   background: var(--disabled);
-  width: 3rem;
+  width: 2.6rem;
   justify-content: center;
   align-items: center;
   position: relative;
-  border-radius: 0.7rem;
+  border-radius: 1rem;
+  border:2px solid var(--disabled);
+  transition: border-color 100ms ease;
 }
 
 .lap button .bar {
   position: absolute;
-  height: 1.6rem;
-  width: 4px;
-  background: var(--white);
+  height: 1.2rem;
+  width: 3px;
+  background: var(--third-color);
   border-radius: 1rem;
+}
+
+.lap button:hover {
+  border-color: var(--third-color);
 }
 
 .lap button .bar:nth-child(1) {

@@ -1,7 +1,9 @@
+
 const timerEl = document.querySelector(".timer");
-const startBtn = document.querySelector('.start');
-const stopBtn = document.querySelector('.stop');
-const resetBtn = document.querySelector('.reset');
+const startBtnEl = document.querySelector('.start');
+const stopBtnEl = document.querySelector('.stop');
+const thirdBtnEl = document.querySelector('.thirdBtn');
+const moments = []
 var interval;
 var areRunning = false
 
@@ -17,7 +19,7 @@ function createTime() {
 
 var time = createTime()
 
-startBtn.onclick = () => {
+startBtnEl.onclick = () => {
   if (!areRunning) {
     interval = setInterval(function() {
       updateTime()
@@ -26,20 +28,32 @@ startBtn.onclick = () => {
     areRunning = true
     startButton(true)
     stopButton(true)
-    resetButton(true)
+    thirdButton(true)
+    switchFirstButton("running")
+    switchThirdButton()
   }
 }
-stopBtn.onclick = () => {
+stopBtnEl.onclick = () => {
   clearInterval(interval)
   areRunning = false
   startButton(false)
   stopButton(false)
+  switchFirstButton(true)
+  switchThirdButton()
 }
-resetBtn.onclick = () => {
-  time = createTime()
-  renderTime()
-  if (!areRunning)
-    resetButton(false)
+thirdBtnEl.onclick = () => {
+  // when the third button is 'reset'
+  if (!areRunning) {
+    time = createTime()
+    renderTime()
+    thirdButton(false)
+    switchFirstButton(false)
+  }
+  
+  // when the third button is 'lap'
+  if (areRunning) {
+    alert('Moment marked')
+  }
 }
 
 function renderTime() {
@@ -69,23 +83,42 @@ function updateTime() {
 
 function startButton(state) {
   if (state) {
-    startBtn.style.background = 'var(--fourth-color)'
-    startBtn.style.color = 'var(--first-color)'
+    startBtnEl.style.background = 'var(--fourth-color)'
+    startBtnEl.style.color = 'var(--first-color)'
   }
   if (!state) {
-    startBtn.style.background = 'initial'
-    startBtn.style.color = 'var(--fourth-color)'
+    startBtnEl.style.background = 'initial'
+    startBtnEl.style.color = 'var(--fourth-color)'
   }
 }
 
 function stopButton(state) {
-  if (state) stopBtn.removeAttribute('disabled')
-  if (!state) stopBtn.setAttribute('disabled', true)
+  if (state) stopBtnEl.removeAttribute('disabled')
+  if (!state) stopBtnEl.setAttribute('disabled', true)
 }
 
-function resetButton(state) {
+function thirdButton(state) {
   if (state)
-    resetBtn.removeAttribute('disabled')
+    thirdBtnEl.removeAttribute('disabled')
   if (!state)
-    resetBtn.setAttribute('disabled', true)
+    thirdBtnEl.setAttribute('disabled', true)
+}
+
+function switchFirstButton(state) {
+  if (state) {
+    startBtnEl.innerText = "Resume"
+  }
+  if (state == "running") {
+    startBtnEl.innerText = "Running"
+  }
+  if (!state) {
+    startBtnEl.innerText = "Start"
+  }
+}
+
+function switchThirdButton() {
+  if (areRunning)
+    thirdBtnEl.innerText = "Lap"
+  if (!areRunning)
+    thirdBtnEl.innerText = "Reset"
 }
